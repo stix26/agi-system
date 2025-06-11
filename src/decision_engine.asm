@@ -3,6 +3,7 @@ section .data
 
 section .text
     global decision_engine_main
+    extern write_output
 
 decision_engine_main:
     mov rdi, decision_msg

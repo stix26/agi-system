@@ -13,9 +13,10 @@ read_input:
     ret
 
 write_output:
+    push rdi            ; save pointer to output buffer
     mov rax, 1          ; syscall: write
     mov rdi, 1          ; stdout
-    mov rsi, rdi        ; Output buffer
+    pop rsi             ; restore buffer pointer
     mov rdx, 256        ; Output size
     syscall
     ret

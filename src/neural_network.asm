@@ -14,8 +14,9 @@ neural_network_main:
     xor rcx, rcx        ; Clear counter
     .loop:
         mov al, [rsi + rcx]  ; Load weight
-        imul al, [rdi + rcx] ; Multiply by input
-        add [rdx + rcx], al  ; Add to output
+        mov bl, [rdi + rcx]  ; Load input
+        imul bl              ; Multiply AL by BL -> AX
+        add [rdx + rcx], al  ; Add low byte of result to output
         inc rcx              ; Increment counter
         cmp rcx, 2           ; Check if done
         jl .loop

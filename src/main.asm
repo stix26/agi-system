@@ -6,6 +6,9 @@ section .bss
 
 section .text
     global _start
+    extern init_memory_manager
+    extern neural_network_main
+    extern decision_engine_main
 
 _start:
     ; Print welcome message
@@ -28,9 +31,10 @@ _start:
 
 print_string:
     ; Print a null-terminated string
+    push rdi            ; preserve pointer to string
     mov rax, 1          ; syscall: write
     mov rdi, 1          ; file descriptor: stdout
-    mov rsi, rdi        ; string address
+    pop rsi             ; restore string address
     mov rdx, 25         ; string length
     syscall
     ret
