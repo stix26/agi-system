@@ -1,4 +1,5 @@
 section .data
+    global weights, inputs, output
     weights db 1, 2, 3, 4
     inputs db 5, 6
     output resb 2
@@ -13,11 +14,12 @@ neural_network_main:
 
     xor rcx, rcx        ; Clear counter
     .loop:
-        mov al, [rsi + rcx]  ; Load weight
-        imul al, [rdi + rcx] ; Multiply by input
-        add [rdx + rcx], al  ; Add to output
-        inc rcx              ; Increment counter
-        cmp rcx, 2           ; Check if done
+        movzx rax, byte [rsi + rcx]  ; Load weight
+        movzx rbx, byte [rdi + rcx]  ; Load input
+        imul rax, rbx                ; Multiply
+        add [rdx + rcx], al          ; Add low byte of result
+        inc rcx                      ; Increment counter
+        cmp rcx, 2                   ; Check if done
         jl .loop
 
     ret
