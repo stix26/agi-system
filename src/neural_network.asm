@@ -1,6 +1,8 @@
 section .data
     weights db 1, 2, 3, 4
     inputs db 5, 6
+
+section .bss
     output resb 2
 
 section .text

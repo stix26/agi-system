@@ -1,31 +1,46 @@
 # AGI System Quick Start Guide
 
-# Step 1: Install the System
-# Follow the installation instructions in INSTALL.md or use the commands below:
-git clone https://github.com/stix26/agi-system.git
-cd agi-system
-sudo apt update
-sudo apt install nasm python3 python3-pip
-bash tools/build.sh
+## Installation
+1. Clone the repository
+   ```bash
+   git clone https://github.com/stix26/agi-system.git
+   cd agi-system
+   ```
+2. Install dependencies
+   ```bash
+   sudo apt update
+   sudo apt install nasm python3 python3-pip
+   ```
 
-# Step 2: Run the System
-# Execute the compiled binary with the default configuration and input files:
-bash tools/run.sh
+## Building
+You can build the project using the provided Makefile:
+```bash
+make
+```
+This produces the `agi_system` executable.
 
-# Step 3: Explore Examples
-# Navigate to the examples folder to view sample input and output files:
-cd examples
+## Running
+Run the system using the helper script:
+```bash
+./tools/run.sh
+```
 
-# Step 4: Generate Input Data Using Python
-# Use the provided Python script to generate random input data:
-python3 -c "import random; f = open('generated_input.txt', 'w'); [f.write(f'{random.randint(0, 10)} {random.randint(0, 10)}\\n') for _ in range(10)]; f.close()"
-
-# Step 5: Run the System with Custom Input
-# Use the generated input file to run the system:
+## Examples
+Sample input and output files can be found in the `examples/` directory. To generate random input data:
+```bash
+python3 -c "import random; open('generated_input.txt','w').writelines(f'{random.randint(0,10)} {random.randint(0,10)}\n' for _ in range(10))"
+```
+Then execute the system with your custom input file:
+```bash
 ./agi_system config/system_config.cfg examples/generated_input.txt
+```
+Logs are written to `logs/agi.log` if enabled in the configuration.
 
-# Step 6: Check Logs
-# View logs for debugging or system output:
-cat logs/agi.log
+For more details see `USAGE.md`.
 
-# For more details, refer to the README.md and USAGE.md files.
+## Running Tests
+Execute the built-in assembly tests using `make test`:
+```bash
+make test
+```
+This compiles the test suite and runs the resulting `tests/run_tests` binary.
