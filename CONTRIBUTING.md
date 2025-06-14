@@ -35,7 +35,8 @@ By contributing, you agree to adhere to the guidelines and Code of Conduct outli
    - For features involving data integration, ensure sources are reputable and cross-referenced for accuracy.
 
 5. **Test Your Changes**  
-   - Run the test suite to verify your changes do not break existing functionality:
+   - Run the test suite to verify your changes do not break existing functionality.
+     The script below also sets up the required SQLite database:
      \`\`\`bash
      bash tools/test.sh
      \`\`\`

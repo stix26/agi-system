@@ -38,9 +38,18 @@ Logs are written to `logs/agi.log` if enabled in the configuration.
 
 For more details see `USAGE.md`.
 
-## Running Tests
-Execute the built-in assembly tests using `make test`:
+## Database Setup
+The project includes a lightweight SQLite database used for storing log
+messages during testing. Initialize the database with:
 ```bash
-make test
+./tools/setup_db.sh
+```
+This creates an `agi.db` file in the repository root containing the `agi_logs`
+table.
+
+## Running Tests
+Use the helper script to initialize the database and run the assembly tests:
+```bash
+./tools/test.sh
 ```
 This compiles the test suite and runs the resulting `tests/run_tests` binary.

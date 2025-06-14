@@ -15,4 +15,5 @@ bash tools/build.sh
 bash tools/run.sh
 
 # Step 5: Test the System
+# This script initializes the SQLite database and runs the test suite
 bash tools/test.sh
